@@ -38,13 +38,13 @@ func (key HostIPKey) asEtcdKey() string {
 		key.Hostname)
 }
 
-type storeKey interface {
+type Key interface {
 	asEtcdKey() string
 }
 
 // ParseKey parses a datastore key into one of the <Type>Key structs.
 // Returns nil if the string doesn't match one of our objects.
-func ParseKey(key string) storeKey {
+func ParseKey(key string) Key {
 	if m := endpointRegex.FindStringSubmatch(key); m != nil {
 		return EndpointKey{
 			Hostname:       m[1],
