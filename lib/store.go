@@ -19,13 +19,13 @@ import (
 )
 
 var (
-	tierDataRegex      = regexp.MustCompile(`^/calico/v1/policy/tier/([^/]+)/metadata`)
-	policyRegex        = regexp.MustCompile(`^/calico/v1/policy/tier/([^/]+)/policy/([^/]+)`)
-	profileRulesRegex  = regexp.MustCompile(`^/calico/v1/policy/profile/([^/]+)/rules`)
-	profileTagsRegex   = regexp.MustCompile(`^/calico/v1/policy/profile/([^/]+)/tags`)
-	profileLabelsRegex = regexp.MustCompile(`^/calico/v1/policy/profile/([^/]+)/labels`)
-	hostIpRegex        = regexp.MustCompile(`^/calico/v1/host/([^/]+)/bird_ip`)
-	endpointRegex      = regexp.MustCompile(`^/calico/v1/host/([^/]+)/workload/([^/]+)/([^/]+)/endpoint/([^/]+)`)
+	tierDataRegex      = regexp.MustCompile(`^/?calico/v1/policy/tier/([^/]+)/metadata`)
+	policyRegex        = regexp.MustCompile(`^/?calico/v1/policy/tier/([^/]+)/policy/([^/]+)`)
+	profileRulesRegex  = regexp.MustCompile(`^/?calico/v1/policy/profile/([^/]+)/rules`)
+	profileTagsRegex   = regexp.MustCompile(`^/?calico/v1/policy/profile/([^/]+)/tags`)
+	profileLabelsRegex = regexp.MustCompile(`^/?calico/v1/policy/profile/([^/]+)/labels`)
+	hostIpRegex        = regexp.MustCompile(`^/?calico/v1/host/([^/]+)/bird_ip`)
+	endpointRegex      = regexp.MustCompile(`^/?calico/v1/host/([^/]+)/workload/([^/]+)/([^/]+)/endpoint/([^/]+)`)
 )
 
 // TODO find a place to put this
