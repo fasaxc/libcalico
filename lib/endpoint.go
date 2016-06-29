@@ -89,8 +89,8 @@ func GetEndpoints(endpoints_chan chan EndpointSync, etcd client.KeysAPI) error {
 	return nil
 }
 
-func ParseEndpoint(key *EndpointKey, rawData []byte) (endpoint *Endpoint, err error) {
-	endpoint = &Endpoint{EndpointKey: *key}
+func ParseEndpoint(key EndpointKey, rawData []byte) (endpoint *Endpoint, err error) {
+	endpoint = &Endpoint{EndpointKey: key}
 	err = json.Unmarshal([]byte(rawData), endpoint)
 	if err != nil {
 		endpoint = nil
@@ -98,8 +98,8 @@ func ParseEndpoint(key *EndpointKey, rawData []byte) (endpoint *Endpoint, err er
 	return
 }
 
-func ParseHostEndpoint(key *HostEndpointKey, rawData []byte) (hostEndpoint *HostEndpoint, err error) {
-	hostEndpoint = &HostEndpoint{HostEndpointKey: *key}
+func ParseHostEndpoint(key HostEndpointKey, rawData []byte) (hostEndpoint *HostEndpoint, err error) {
+	hostEndpoint = &HostEndpoint{HostEndpointKey: key}
 	err = json.Unmarshal([]byte(rawData), hostEndpoint)
 	if err != nil {
 		hostEndpoint = nil
@@ -200,7 +200,7 @@ func GetEndpoint(etcd client.KeysAPI, w Workload) (bool, *Endpoint, error) {
 		for _, node := range resp.Node.Nodes {
 			if !node.Dir {
 				key := ParseKey(node.Key).(EndpointKey)
-				endpoint, err := ParseEndpoint(&key, []byte(node.Value))
+				endpoint, err := ParseEndpoint(key, []byte(node.Value))
 				if err != nil {
 					return false, nil, err
 				}

@@ -50,8 +50,8 @@ type Policy struct {
 	Outbound []Rule  `json:"outbound_rules"`
 }
 
-func ParseTierMetadata(key *TierMetadataKey, rawData []byte) (tierMetadata *TierMetadata, err error) {
-	tierMetadata = &TierMetadata{TierMetadataKey: *key}
+func ParseTierMetadata(key TierMetadataKey, rawData []byte) (tierMetadata *TierMetadata, err error) {
+	tierMetadata = &TierMetadata{TierMetadataKey: key}
 	err = json.Unmarshal([]byte(rawData), tierMetadata)
 	if err != nil {
 		tierMetadata = nil
@@ -59,8 +59,8 @@ func ParseTierMetadata(key *TierMetadataKey, rawData []byte) (tierMetadata *Tier
 	return
 }
 
-func ParsePolicy(key *PolicyKey, rawData []byte) (policy *Policy, err error) {
-	policy = &Policy{PolicyKey: *key}
+func ParsePolicy(key PolicyKey, rawData []byte) (policy *Policy, err error) {
+	policy = &Policy{PolicyKey: key}
 	err = json.Unmarshal([]byte(rawData), policy)
 	if err != nil {
 		policy = nil

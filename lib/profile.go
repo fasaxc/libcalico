@@ -11,6 +11,11 @@ type ProfileKey struct {
 	ProfileID string
 }
 
+func (key ProfileKey) asEtcdKey() string {
+	return fmt.Sprintf("/calico/v1/policy/profile/%s",
+		key.ProfileID)
+}
+
 type ProfileRulesKey ProfileKey
 
 func (key ProfileRulesKey) asEtcdKey() string {
@@ -40,6 +45,10 @@ type Rules struct {
 type Rule struct {
 	Action string `json:"action"`
 	SrcTag string `json:"src_tag,omitempty"`
+	SrcSelector *string `json:"src_selector,omitempty"`
+	DstSelector *string `json:"dst_selector,omitempty"`
+	NotSrcSelector *string `json:"!src_selector,omitempty"`
+	NotDstSelector *string `json:"!dst_selector,omitempty"`
 }
 
 type Profile struct {
