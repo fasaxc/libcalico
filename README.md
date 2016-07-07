@@ -32,10 +32,10 @@ Assuming you have already installed **go v1.6+**, perform the following simple s
     ```
 
 
+To make a release build, [install Docker](https://docs.docker.com/engine/installation/), then run:
 
-A dockerized build of calicoctl is available which builds calicoctl in a CentOS 6.6 container.
-
-Run:
     ```
     ./build-binary.sh
     ```
+    
+The release build uses a CentOS 6.6 container so that we build releases against a relatively old glibc (version 2.12).  This ensures the release binary will work on any distribution that uses glibc 2.12+.
