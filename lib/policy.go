@@ -50,6 +50,14 @@ type Policy struct {
 	Outbound []Rule  `json:"outbound_rules"`
 }
 
+func (pol *Policy) JSON() string {
+	bytes, err := json.Marshal(pol)
+	if err != nil {
+		panic(err)
+	}
+	return string(bytes)
+}
+
 func ParseTierMetadata(key TierMetadataKey, rawData []byte) (tierMetadata *TierMetadata, err error) {
 	tierMetadata = &TierMetadata{TierMetadataKey: key}
 	err = json.Unmarshal([]byte(rawData), tierMetadata)
